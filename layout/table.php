@@ -45,19 +45,23 @@ if (isset($_POST['saveStockModal'])) {
 //sold modal
 if (isset($_POST['saveSoldModal'])) {
     $name = $_POST['soldName'];
-    $quantity = $_POST['soldQuantity'];
+    $quant = $_POST['soldQuantity'];
     $sql = "select * from items where name='$name'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    $quantity = $row['quantity'] - $quantity;
+    $quantity = $row['quantity'] - $quant;
     $sql = "update items set quantity='$quantity' where name='$name';";
+    $conn->query($sql);
+
+    $cost = $row['cp'] * $_POST['soldQuantity'];
+    $sales = $row['sp'] * $_POST['soldQuantity'];
+    $pl = $sales - $cost;
+    $date = date("y/m/d");
+    $sql = "insert into pl (datee,name,quantity,pl,user_id) values ('$date','$name','$quant','$pl','$user_id')";
     $conn->query($sql);
 }
 
 
-
-
-$conn = new mysqli("localhost", "root", "", "shop_management");
 $sql = "select * from items where user_id='$user_id'";
 $result = $conn->query($sql);
 ?>
@@ -83,7 +87,7 @@ $result = $conn->query($sql);
 
     <?php
     foreach ($result as $row) {
-        $item_id = $row['id'];
+
         echo " <form method='post'> <tbody>
 <tr>
 

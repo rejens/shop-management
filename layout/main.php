@@ -19,7 +19,7 @@
             }
         }
         if ($count != 1) {
-            echo ("are you lost l");
+            echo ("are you lost ");
         }
     } else {
         include("layout/dashboard.php");

@@ -45,13 +45,17 @@ foreach ($result as $row) {
 
 <!--   pie chart start-->
 
-<div class="card bg-light mb-3 ml-5 shadow-lg  " style="max-width: 25rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
+<div class="card bg-light mb-3 ml-2 shadow-lg " style="max-width: 20rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
     <div class="card-body text-primary">
         <canvas id="pieChart" style="max-width: 500px;"></canvas>
         <div class="text-dark mt-5">total investment: <?php echo $totalInvestment; ?></div>
     </div>
 </div>
 <!--   pie chart end-->
+
+
+
+
 </div>
 
 </div>
