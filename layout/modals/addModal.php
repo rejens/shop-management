@@ -12,11 +12,14 @@
                     <div class="form-group">
                         <label for="inputName" id="title">name</label>
                         <input type="text" class="form-control" id="inputName" name="inputName" required>
-
                     </div>
                     <div class=" form-group">
-                        <label for="inputPrice" id="amount">price</label>
-                        <input type="number" class="form-control" id="inputPrice" name="inputPrice" required>
+                        <label for="inputCp" id="amount">cp</label>
+                        <input type="number" class="form-control" id="inputCp" name="inputCp" required>
+                    </div>
+                    <div class=" form-group">
+                        <label for="inputSp" id="amount">sp</label>
+                        <input type="number" class="form-control" id="inputSp" name="inputSp" required>
                     </div>
                     <div class=" form-group">
                         <label for="inputQuantity" id="amount">quantity</label>

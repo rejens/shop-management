@@ -1,7 +1,7 @@
 <?php
 $id = $user['id'];
 $conn = new mysqli("localhost", "root", "", "shop_management");
-$sql = "select name, quantity, price from items where user_id=$id";
+$sql = "select name, quantity, cp from items where user_id=$id";
 $result = $conn->query($sql);
 $name = [];
 
@@ -13,13 +13,15 @@ $name = [];
     var label = [];
 </script>
 <?php
+$totalInvestment = 0;
 
 foreach ($result as $row) {
 ?>
     <script>
-        quantity.push(<?php echo ($row['quantity'] * $row['price']) ?>);
+        <?php $investment = $row['quantity'] * $row['cp']; ?>
+        quantity.push(<?php echo $investment ?>);
         label.push("<?php echo $row['name'] ?>")
-
+        <?php $totalInvestment += $investment; ?>
 
         function getRandomColor() {
 
@@ -46,6 +48,7 @@ foreach ($result as $row) {
 <div class="card bg-light mb-3 ml-5 shadow-lg  " style="max-width: 25rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
     <div class="card-body text-primary">
         <canvas id="pieChart" style="max-width: 500px;"></canvas>
+        <div class="text-dark mt-5">total investment: <?php echo $totalInvestment; ?></div>
     </div>
 </div>
 <!--   pie chart end-->

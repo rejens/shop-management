@@ -5,9 +5,10 @@ $conn = new mysqli("localhost", "root", "", "shop_management");
 //add modal
 if (isset($_POST['saveAddModal'])) {
     $name = $_POST['inputName'];
-    $price = $_POST['inputPrice'];
+    $cp = $_POST['inputCp'];
+    $sp = $_POST['inputSp'];
     $quantity = $_POST['inputQuantity'];
-    $sql = "insert into items (name,price,quantity,user_id) values ('$name','$price','$quantity','$user_id')";
+    $sql = "insert into items (name,cp,sp,quantity,user_id) values ('$name','$cp','$sp','$quantity','$user_id')";
     $conn->query($sql);
 }
 
@@ -15,7 +16,7 @@ if (isset($_POST['saveAddModal'])) {
 if (isset($_POST['saveEditModal'])) {
     $price = $_POST['editPrice'];
     $name = $_POST['editName'];
-    $sql = "update items set price='$price' where name='$name'";
+    $sql = "update items set sp='$price' where name='$name'";
     $conn->query($sql);
 }
 
@@ -33,8 +34,11 @@ if (isset($_POST['saveStockModal'])) {
     $sql = "select * from items where name='$name'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
+    $q = $quantity;
     $quantity += $row['quantity'];
-    $sql = "update items set quantity='$quantity' where name='$name';";
+    $cp = $_POST['stockCp'];
+    $cp = ($row['cp'] * $q + $cp * $row['quantity']) / $quantity;
+    $sql = "update items set quantity='$quantity', cp='$cp' where name='$name'";
     $conn->query($sql);
 }
 
@@ -71,7 +75,8 @@ $result = $conn->query($sql);
     <thead>
         <tr>
             <th scope="col">name</th>
-            <th scope="col">price</th>
+            <th scope="col">cp</th>
+            <th scope="col">sp</th>
             <th scope="col">quantity</th>
         </tr>
     </thead>
@@ -83,7 +88,8 @@ $result = $conn->query($sql);
 <tr>
 
     <td>" . $row['name'] . "</td>
-    <td>" . $row['price'] . "</td>
+    <td>" . $row['cp'] . "</td> 
+    <td>" . $row['sp'] . "</td>
     <td>" . $row['quantity'] . "</td> 
 </tr>
 

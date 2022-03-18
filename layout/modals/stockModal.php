@@ -13,6 +13,10 @@
                         <label for="inputName" id="title">name</label>
                         <input type="text" class="form-control" id="stockName" name="stockName" required>
                     </div>
+                    <div class=" form-group">
+                        <label for="stockCp" id="amount">cp</label>
+                        <input type="number" class="form-control" id="stockCp" name="stockCp" required>
+                    </div>
 
                     <div class=" form-group">
                         <label for="inputQuantity" id="amount">quantity</label>
