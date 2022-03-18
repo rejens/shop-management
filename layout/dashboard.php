@@ -1,7 +1,7 @@
 <?php
 $id = $user['id'];
 $conn = new mysqli("localhost", "root", "", "shop_management");
-$sql = "select name, quantity from items where user_id=$id";
+$sql = "select name, quantity, price from items where user_id=$id";
 $result = $conn->query($sql);
 $name = [];
 
@@ -17,7 +17,7 @@ $name = [];
 foreach ($result as $row) {
 ?>
     <script>
-        quantity.push(<?php echo $row['quantity'] ?>);
+        quantity.push(<?php echo ($row['quantity'] * $row['price']) ?>);
         label.push("<?php echo $row['name'] ?>")
 
 

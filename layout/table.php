@@ -7,7 +7,7 @@ if (isset($_POST['saveAddModal'])) {
     $name = $_POST['inputName'];
     $price = $_POST['inputPrice'];
     $quantity = $_POST['inputQuantity'];
-    $sql = "insert into items (name,price,quantity,user_id) values ('$name,'$price','$quantity','$user_id')";
+    $sql = "insert into items (name,price,quantity,user_id) values ('$name','$price','$quantity','$user_id')";
     $conn->query($sql);
 }
 
@@ -38,6 +38,18 @@ if (isset($_POST['saveStockModal'])) {
     $conn->query($sql);
 }
 
+//sold modal
+if (isset($_POST['saveSoldModal'])) {
+    $name = $_POST['soldName'];
+    $quantity = $_POST['soldQuantity'];
+    $sql = "select * from items where name='$name'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $quantity = $row['quantity'] - $quantity;
+    $sql = "update items set quantity='$quantity' where name='$name';";
+    $conn->query($sql);
+}
+
 
 
 
@@ -52,6 +64,7 @@ $result = $conn->query($sql);
     <button type='button' class='btn btn-secondary' id='editButton'>edit</button>
     <button type='button' class='btn btn-danger' id='deleteButton'> delete</button>
     <button type='button' class='btn btn-success' id='stockButton'>restock</button>
+    <button type='button' class='btn btn-dark' id='soldButton'>sold</button>
 </div>
 
 <table class="table table-striped">
@@ -100,6 +113,7 @@ include("modals/addModal.php");
 include("modals/editModal.php");
 include("modals/stockModal.php");
 include("modals/deleteModal.php");
+include("modals/soldModal.php");
 ?>
 
 <script>
@@ -117,6 +131,10 @@ include("modals/deleteModal.php");
 
         $("#stockButton").click(function() {
             $("#stockModal").modal("show")
+        })
+
+        $("#soldButton").click(function() {
+            $("#soldModal").modal("show")
         })
     })
 </script>
