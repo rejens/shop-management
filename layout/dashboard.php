@@ -1,7 +1,7 @@
 <?php
-$id = $user['id'];
+$user_id = $user['id'];
 $conn = new mysqli("localhost", "root", "", "shop_management");
-$sql = "select name, quantity, cp from items where user_id=$id";
+$sql = "select name, quantity, cp from items where user_id='$user_id'";
 $result = $conn->query($sql);
 $name = [];
 
@@ -23,6 +23,7 @@ foreach ($result as $row) {
         label.push("<?php echo $row['name'] ?>")
         <?php $totalInvestment += $investment; ?>
 
+
         function getRandomColor() {
 
             var letters = '0123456789ABCDEF';
@@ -41,20 +42,34 @@ foreach ($result as $row) {
 ?>
 
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <!--   pie chart start-->
 
+            <div class="card bg-light mb-3 ml-0 shadow-lg " style="max-width: 20rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
+                <div class="card-body text-primary">
+                    <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                    <br>
+                    <div class="text-dark mt-5">total investment: <?php echo $totalInvestment; ?></div>
+                </div>
+            </div>
+            <!--   pie chart end-->
+        </div>
 
-<!--   pie chart start-->
+        <div class="col-8">
+            <!--   pie chart start-->
 
-<div class="card bg-light mb-3 ml-2 shadow-lg " style="max-width: 20rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
-    <div class="card-body text-primary">
-        <canvas id="pieChart" style="max-width: 500px;"></canvas>
-        <div class="text-dark mt-5">total investment: <?php echo $totalInvestment; ?></div>
+            <div class="card bg-light mb-3 ml-0 shadow-lg " style="max-width: 45rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
+                <div class="card-body text-primary">
+                    <canvas id="lineChart" style="max-width: 60rem;max-height: 50rem"></canvas>
+                </div>
+            </div>
+            <!--   pie chart end-->
+        </div>
+
     </div>
 </div>
-<!--   pie chart end-->
-
-
-
 
 </div>
 
@@ -62,20 +77,19 @@ foreach ($result as $row) {
 
 <script>
     //pie js start
-
-
-    var num = quantity
+    var quantity = quantity
     var bg = background
     var bgc = hover
     var label = label
 
-    var ctxP = document.getElementById("pieChart").getContext('2d');
-    var myPieChart = new Chart(ctxP, {
+
+    var pieChart = document.getElementById("pieChart").getContext('2d');
+    var myPieChart = new Chart(pieChart, {
         type: 'pie',
         data: {
             labels: label,
             datasets: [{
-                data: num,
+                data: quantity,
                 backgroundColor: bg,
                 hoverBackgroundColor: bgc
             }]
@@ -84,25 +98,69 @@ foreach ($result as $row) {
             responsive: true
         }
     });
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
-</script>
-
-<script>
-    const myChart = new Chart(
-        document.getElementById('pieChart'),
-        config
-    );
 </script>
 <!-- pie end -->
 
-<!-- random color generator start -->
 
+<!-- line chart start-->
+<script>
+    var datee = [];
+    var pl = [];
+    <?php
+    $sql = "select datee,sum(salesAmt) as 'group' from pl where user_id='$user_id' GROUP by datee";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+    ?>
+        datee.push('<?php echo $row['datee']; ?>')
+        pl.push(<?php echo $row['group'] ?>)
+    <?php
+    }
+    ?>
+</script>
 
-<!-- random color generator end -->
+<script>
+    let dateLabels = datee;
+    let data = pl;
+
+    var lineChart = document.getElementById("lineChart").getContext('2d');
+
+    let gradient = lineChart.createLinearGradient(0, 0, 0, 400)
+    gradient.addColorStop(0, "rgb(58,123,231,1");
+    gradient.addColorStop(1, "rgb(0,210,255,0.3");
+
+    var myLineChart = new Chart(lineChart, {
+        type: 'line',
+        data: {
+            labels: dateLabels,
+            datasets: [{
+                data: data,
+                hoverBackgroundColor: '#5B7DB1',
+                label: 'sales',
+                fill: true,
+                backgroundColor: gradient,
+                borderColor: "#5B7DB1",
+                radius: 3,
+                hoverRadius: 5,
+
+            }]
+
+        },
+        options: {
+            responsive: true,
+            animations: {
+                tension: {
+                    duration: 1000,
+                    easing: 'linear',
+                    from: 1,
+                    to: 0,
+
+                }
+            },
+        }
+    });
+</script>
+
+<!-- line chart end-->
 
 
 

@@ -5,10 +5,6 @@ $sql = "select * from pl where user_id='$user_id'";
 $result = $conn->query($sql);
 ?>
 
-
-
-
-
 <table class="table table-striped">
     <thead>
         <tr>
@@ -16,6 +12,8 @@ $result = $conn->query($sql);
             <th scope="col">name</th>
             <th scope="col">quantity</th>
             <th scope="col">profit/loss</th>
+            <th scope="col">sales</th>
+
         </tr>
     </thead>
 
@@ -28,6 +26,8 @@ $result = $conn->query($sql);
 <td>" . $row['name'] . "</td> 
 <td>" . $row['quantity'] . "</td>
 <td>" . $row['pl'] . "</td> 
+<td>" . $row['salesAmt'] . "</td> 
+
 
 </tr>
 

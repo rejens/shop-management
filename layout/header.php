@@ -32,18 +32,17 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-          <div class="col-9 d-flex justify-content-center">
-            <h2>Welcome to my site</h2>
+        <ul class="nav navbar-nav navbar-right">
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <div class="d-flex justify-content-end">
+              <img src="img/user_img.png" height="50px">
+              <span class="m-2" id="user_name"><?php echo $user['name']; ?></span>
+              <form method="get" action="index.php">
+                <button type="submit" name="logout" class="btn btn-danger m-2">Logout</button>
+              </form>
+            </div>
           </div>
-          <div class="d-flex justify-content-end">
-            <img src="img/user_img.png" height="50px">
-            <span class="m-2" id="user_name"><?php echo $user['name']; ?></span>
-            <form method="get" action="index.php">
-              <button type="submit" name="logout" class="btn btn-danger m-2">Logout</button>
-            </form>
-          </div>
-        </div>
+        </ul>
       </div>
     </nav>
 
