@@ -3,6 +3,7 @@ if (isset($_POST['register'])) {
   $name = $_POST['name'];
   $company = $_POST['company'];
   $password = $_POST['password'];
+  //$password = password_hash($password, PASSWORD_DEFAULT); // encrypting password
 
   $conn = new mysqli("localhost", "root", "", "shop_management");
   if ($conn->connect_error) {
@@ -54,8 +55,8 @@ if (isset($_POST['register'])) {
 </head>
 
 
-<body>
-  <section class="vh-100" style="background-color: #eee;">
+<body style="background-image: url('img/blur.webp') ; background-repeat: no-repeat;  background-size: 100%">
+  <section class="vh-100">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">
@@ -69,36 +70,57 @@ if (isset($_POST['register'])) {
                   <form class="mx-1 mx-md-4" method="post" action="register.php">
 
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="name" id="form3Example1c" class="form-control" required />
-                        <label class="form-label" for="form3Example1c">Your Name</label>
+                        <div class="mb-2">
+                          <label class="form-label" for="name">Your Name</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"><i class="fas fa-user py-1 "></i></div>
+                            </div>
+                            <input type="text" name="name" class="form-control" id="name" required />
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fa-solid fa-building fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" name="company" id="form3Example3c" class="form-control" required />
-                        <label class="form-label" for="form3Example3c">company name</label>
+                        <div class="mb-3">
+                          <label class="form-label" for="company">company name</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"> <i class="fa-solid fa-building fa-lg py-1 "></i>
+                              </div>
+                            </div>
+                            <input type="text" name="company" id="company" class="form-control" required />
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" name=password name id="form3Example4c" class="form-control" required />
-                        <label class="form-label" for="form3Example4c">Password</label>
+                        <div class="mb-3">
+                          <label class="form-label" for="password">Password</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text"> <i class="fas fa-lock fa-lg "></i>
+                              </div>
+                            </div>
+                            <input type="password" name=password name id="password" class="form-control" required />
+                          </div>
+                        </div>
                       </div>
                     </div>
+
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" name="register" class="btn btn-primary btn-lg">Signup</button>
+                      <button type="submit" name="register" class="btn btn-dark btn-lg">Signup</button>
                     </div>
 
                   </form>
                 </div>
-                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2 ">
 
                   <img src="img/register.webp" class="img-fluid" alt="Sample image">
 

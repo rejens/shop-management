@@ -8,7 +8,7 @@ if (isset($_POST['saveAddModal'])) {
     $cp = $_POST['inputCp'];
     $sp = $_POST['inputSp'];
     $quantity = $_POST['inputQuantity'];
-    $sql = "select '$name' from items where user_id='$user_id'";
+    $sql = "select name from items where user_id='$user_id' and name='$name'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 ?>
@@ -127,7 +127,7 @@ $result = $conn->query($sql);
     <button type='button' class='btn btn-secondary' id='editButton'>edit</button>
     <button type='button' class='btn btn-danger' id='deleteButton'> delete</button>
     <button type='button' class='btn btn-success' id='stockButton'>restock</button>
-    <button type='button' class='btn btn-dark' id='soldButton'>sold</button>
+    <button type='button' class='btn btn-dark' id='soldButton'>sale</button>
 </div>
 
 <table class="table table-striped">
