@@ -130,7 +130,7 @@ $result = $conn->query($sql);
     <button type='button' class='btn btn-dark' id='soldButton'>sale</button>
 </div>
 
-<table class="table table-striped">
+<table class="table table-light table-borderless">
     <thead>
         <tr>
             <th scope="col">name</th>
@@ -158,19 +158,6 @@ $result = $conn->query($sql);
     }
     ?>
 </table>
-
-
-
-
-<script>
-    $(".deleteButton").click(function() {
-        <?php
-        $id = $_GET['item_id'];
-        ?>
-        alert(<?php echo $id ?>)
-    })
-</script>
-
 
 <!-- modal start -->
 <?php
@@ -201,5 +188,6 @@ include("modals/soldModal.php");
         $("#soldButton").click(function() {
             $("#soldModal").modal("show")
         })
+
     })
 </script>

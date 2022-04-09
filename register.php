@@ -3,7 +3,7 @@ if (isset($_POST['register'])) {
   $name = $_POST['name'];
   $company = $_POST['company'];
   $password = $_POST['password'];
-  //$password = password_hash($password, PASSWORD_DEFAULT); // encrypting password
+  $password = password_hash($password, PASSWORD_DEFAULT); // encrypting password
 
   $conn = new mysqli("localhost", "root", "", "shop_management");
   if ($conn->connect_error) {

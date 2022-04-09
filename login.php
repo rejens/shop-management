@@ -3,31 +3,36 @@ if (isset($_POST['login'])) {
   $id = $_POST['id'];
   $company = $_POST['company'];
   $password = $_POST['password'];
-  $password = password_hash($password, PASSWORD_DEFAULT);
   $conn = new mysqli("localhost", "root", "", "shop_management");
   if ($conn->connect_error) {
     die("Connection Error");
   }
-  $sql = "select * from user WHERE id='$id' and company='$company' and password='$password';";
+  $sql = "select * from user WHERE id='$id' and company='$company'";
   $result = $conn->query($sql);
   if ($result) {
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
-      session_start();
-      $_SESSION['user'] = $row;
-      header("Location:index.php");
-    } else {
 
+      if (password_verify($password, $row['password'])) {
+        session_start();
+        $_SESSION['user'] = $row;
+        header("Location:index.php");
+      } else
 ?>
       <script>
-        alert("username or password not matched")
+        alert("username and password not matched")
       </script>
-
+    <?php
+  } else {
+    ?>
+      <script>
+        alert("username and password not matched")
+      </script>
 <?php
-
-    }
   }
 }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +96,7 @@ if (isset($_POST['login'])) {
   </div>
 
   </div>
-  <script src="js/jquery=3.6.0.min.js"></script>
+  <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/all.js"> </script>
 </body>

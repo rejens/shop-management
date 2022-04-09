@@ -5,7 +5,7 @@ $sql = "select * from pl where user_id='$user_id'";
 $result = $conn->query($sql);
 ?>
 
-<table class="table table-striped">
+<table class="table table-light table-borderless">
     <thead>
         <tr>
             <th scope="col">date</th>
