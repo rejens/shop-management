@@ -3,7 +3,6 @@ $user_id = $user['id'];
 $conn = new mysqli("localhost", "root", "", "shop_management");
 $sql = "select name, quantity, cp from items where user_id='$user_id'";
 $result = $conn->query($sql);
-$name = [];
 ?>
 
 <script>
@@ -43,7 +42,7 @@ foreach ($result as $row) {
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <!--   pie chart start-->
 
             <div class="card bg-light mb-3 ml-0 shadow-lg " style="max-width: 20rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
@@ -56,7 +55,7 @@ foreach ($result as $row) {
             <!--   pie chart end-->
         </div>
 
-        <div class="col-lg-8 col-md-8">
+        <div class="col-lg-8 col-md-12 col-sm-12">
             <!--   line chart start-->
 
             <div class="card bg-light mb-3 ml-0 shadow-lg " style="max-width: 45rem; background-color:#F4FCD9; height:30rem;border-radius: 15px; ">
@@ -160,37 +159,6 @@ foreach ($result as $row) {
 </script>
 
 <!-- line chart end-->
-<?php
-include("modals/addModal.php");
-include("modals/editModal.php");
-include("modals/stockModal.php");
-include("modals/deleteModal.php");
-include("modals/soldModal.php");
-?>
-
-
-<script>
-    $('document').ready(function() {
-        $("#addButton").click(function() {
-            $("#addModal").modal("show")
-        })
-        $("#editButton").click(function() {
-            $("#editModal").modal("show")
-        })
-
-        $("#deleteButton").click(function() {
-            $("#deleteModal").modal("show")
-        })
-
-        $("#stockButton").click(function() {
-            $("#stockModal").modal("show")
-        })
-
-        $("#soldButton").click(function() {
-            $("#soldModal").modal("show")
-        })
-    })
-</script>
 
 
 <!--Main part end-->

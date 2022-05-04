@@ -1,32 +1,27 @@
-<div class="col-10">
-    <hr style="visibility: hidden;">
+    <!-- main -->
+    <div class="col-10">
+        <hr style="visibility: hidden;">
 
+        <?php
+        $count = 0;
+        if (isset($_GET['pageName'])) {
 
+            $directory = "layout";
+            $pageNames = scandir($directory);
+            $pageName = $_GET['pageName'];
 
-    <?php
-    $count = 0;
-    if (isset($_GET['pageName'])) {
-
-        $directory = "layout";
-        $pageNames = scandir($directory);
-        $pageName = $_GET['pageName'];
-
-        foreach ($pageNames as $page) {
-
-            if ($page == $pageName . ".php") {
+            if (in_array($pageName . ".php", $pageNames)) {
                 include("$directory/$pageName" . ".php");
-                $count += 1;
+            } else {
+                echo "are you lost";
             }
+        } else {
+            include("layout/dashboard.php");
         }
-        if ($count != 1) {
-            echo ("are you lost ");
-        }
-    } else {
-        include("layout/dashboard.php");
-    }
+        ?>
+    </div>
+    </div>
 
-
-    ?>
-
-
-</div>
+    <script>
+        document.querySelector()
+    </script>

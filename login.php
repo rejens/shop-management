@@ -20,15 +20,17 @@ if (isset($_POST['login'])) {
       } else
 ?>
       <script>
-        alert("username and password not matched")
+        alert("username and password not matched");
       </script>
     <?php
   } else {
     ?>
       <script>
-        alert("username and password not matched")
+        alert("username and password not matched");
       </script>
+
 <?php
+
   }
 }
 }
@@ -44,6 +46,11 @@ if (isset($_POST['login'])) {
   <title>Login</title>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/all.css">
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </head>
 
 <body style="background-image: url('img/blur.webp') ; background-repeat: no-repeat;  background-size: 100%">

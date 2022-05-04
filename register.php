@@ -29,8 +29,12 @@ if (isset($_POST['register'])) {
       $id = $row['id'];
 
     ?>
+      <script src="js/jquery-3.6.0.min.js"></script>
+
       <script>
-        alert(<?php echo $id ?>)
+        $(function() {
+          $("#dialog").dialog();
+        });
         window.location.href = "login.php";
       </script>
 
@@ -134,6 +138,9 @@ if (isset($_POST['register'])) {
   </section>
 
   <!-- Button trigger modal -->
+  <div id="dialog" title="Basic dialog">
+    <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
+  </div>
 
 
 

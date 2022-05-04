@@ -1,11 +1,15 @@
 <?php
+// if (isset($_POST['clickme'])) {
+//     $file = $_FILES['files'];
 
-$pass = "123";
-
-
-
-$encrypt_pass = md5($pass);
-echo   "$encrypt_pass <br>";
-
-$encrypt_pass = password_hash($pass, PASSWORD_DEFAULT);
-echo "$encrypt_pass";
+//     $fileName = $file['name'];
+//     $fileName = explode(".", $fileName);
+//     $fileUrl = end($fileName);
+//     $allowdedUrl = ["jpg", "jpeg", "png"];
+//     $fileName = uniqid(true) . "." . $fileUrl;
+//     $tempFileLocation = $file['tmp_name'];
+//     $permFielLocation = "img/" . "$fileName";
+//     echo "<br>";
+//     move_uploaded_file($tempFileLocation, $permFielLocation);
+//}
+echo uniqid();

@@ -1,6 +1,8 @@
 <!-- Footer start-->
+<!--footer-->
 
-<div class="container-fluid  mt-5">
+
+<div class=" mt-5">
     <!-- Footer -->
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
