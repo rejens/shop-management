@@ -9,7 +9,7 @@ if (isset($_POST['login'])) {
   }
   $sql = "select * from user WHERE id='$id' and company='$company'";
   $result = $conn->query($sql);
-  if ($result) {
+  if ($result) {  
     if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
 
